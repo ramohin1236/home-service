@@ -1,5 +1,6 @@
+"use client"
 import { Button } from "@/components/ui/button";
-import { Butterfly_Kids } from "next/font/google";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 const Header = () => {
@@ -18,7 +19,9 @@ const Header = () => {
         </div>
         {/* open icons for mobile device */}
         <div>
-               <Button>Get Started</Button>
+               <Button
+               onClick={()=>signIn('descope')}
+               >Sign In / Sign UP</Button>
            </div>
         </div>
     );
