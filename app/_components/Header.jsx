@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
+
 import Image from "next/image";
 
 const Header = () => {
@@ -20,7 +21,7 @@ const Header = () => {
         {/* open icons for mobile device */}
         <div>
                <Button
-               onClick={()=>signIn('descope')}
+                 onClick={() => signIn("descope")}
                >Sign In / Sign UP</Button>
            </div>
         </div>

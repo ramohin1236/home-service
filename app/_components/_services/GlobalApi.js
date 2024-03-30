@@ -50,8 +50,64 @@ const getAllBussinessList =async()=>{
     return result
 }
 
+
+const getBussinessCategory =async(category)=>{
+    const query=gql`
+    query MyQuery {
+        bussinessLists(where: {categori_some: {name: "` + category + `"}}) {
+            about
+            address
+            categori {
+                name
+            }
+            contactPerson
+            email
+            id
+            name
+            images {
+                url
+            }
+        }
+    }
+`
+    const result= await request(MASTER_URL,query)
+    return result
+}
+
+
+// get bussinessbyid
+
+const getBussinessByID=async(id)=>{
+    const query=gql`
+    query GetBussinessById {
+        bussinessList(where: {id: "`+id+`"}) {
+          about
+          address
+          categori {
+            name
+          }
+          email
+          id
+          images {
+            url
+          }
+          contactPerson
+          mobile
+          name
+        }
+      }
+    `
+    const result= await request(MASTER_URL,query)
+    return result
+}
+
+
+
+
 export default{
     getCategory,
-    getAllBussinessList
+    getAllBussinessList,
+    getBussinessCategory,
+    getBussinessByID
 }
 

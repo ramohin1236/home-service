@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const BussinessList = ({bussinessList,title}) => {
     console.log(bussinessList)
@@ -9,7 +10,7 @@ const BussinessList = ({bussinessList,title}) => {
         
             <div className="grid gird-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 mb-12">
                 {
-                   bussinessList.length >0?  bussinessList.map((bussiness,idx)=>(<div key={bussiness.id}
+                   bussinessList.length >0?  bussinessList.map((bussiness,idx)=>(<Link href={`/details/${bussiness.id}`} key={bussiness.id}
                     className="cursor-pointer shadow-md rounded-lg hover:shadow-lg hover:shadow-primary hover:scale-105 transition-all ease-in-out"
                     >
                          <Image src={bussiness?.images[0]?.url} alt='image'
@@ -28,7 +29,7 @@ const BussinessList = ({bussinessList,title}) => {
                       <Button className="rounded-lg">Book Now</Button>
                       </div>
                       </div>
-                    </div>
+                    </Link>
                     
                     )):[1,2,3,4,5,6,7].map((item,idx)=>(
                         <div key={idx}

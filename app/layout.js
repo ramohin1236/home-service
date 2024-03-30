@@ -1,7 +1,8 @@
+import NextAuthSessionProvider from './provider';
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
-import NextAuthSessionProvider from './provider'
+
 
 
 const inter = Outfit({ subsets: ["latin"] });
