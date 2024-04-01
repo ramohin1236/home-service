@@ -102,12 +102,85 @@ const getBussinessByID=async(id)=>{
 }
 
 
+const createNewBooking = async (businessId, date, time, userEmail, userName) => {
+    try {
+        const mutation = gql`
+            mutation CreateBooking($businessId: ID!, $date: String!, $time: String!, $userEmail: String!, $userName: String!) {
+                createBookings(
+                    data: {
+                        bookingStatus: Booked,
+                        busines: { connect: { id: $businessId } },
+                        date: $date,
+                        time: $time,
+                        userEmail: $userEmail, 
+                        userName: $userName    
+                    }
+                ) {
+                    id
+                }
+                publishManyBooking(to: PUBLISHED) {
+                    count
+                }
+            }
+        `;
 
+        const variables = { businessId, date, time, userEmail, userName };
+
+        const result = await request(MASTER_URL, mutation, variables);
+
+        return result;
+    } catch (error) {
+        console.error("Error creating and publishing booking:", error.message);
+        throw error;
+    }
+};
+
+
+const BussinessBookedSlott= async(businessId,date)=>{
+    const query= gql`
+    query BusinessBookedSlot {
+        booking(where: {busines: {id: "`+businessId+`"}, date: "`+date+`"}) {
+          date
+          time
+        }
+      }
+      
+    `
+    const result = await request(MASTER_URL,query);
+
+    return result;
+}
+
+
+const getUserBooking =async(userEmail)=>{
+      const query =gql`
+      query GetUserBookingHistory {
+        booking(where: {userEmail: "`+userEmail+`"}) {
+          busines {
+            name
+            images {
+              url
+            }
+            address
+            contactPerson
+          }
+          date
+          time
+        }
+      }
+      `
+      const result = await request(MASTER_URL,query);
+
+      return result;
+}
 
 export default{
     getCategory,
     getAllBussinessList,
     getBussinessCategory,
-    getBussinessByID
+    getBussinessByID,
+    createNewBooking,
+    BussinessBookedSlott,
+    getUserBooking
 }
 

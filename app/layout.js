@@ -2,6 +2,7 @@ import NextAuthSessionProvider from './provider';
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
+import { Toaster } from 'sonner';
 
 
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
             <NextAuthSessionProvider>
                 <div className="mx-6 md:mx-16">
                 <Header/>
+                <Toaster/>
                     {children}
                 </div>
         </NextAuthSessionProvider>

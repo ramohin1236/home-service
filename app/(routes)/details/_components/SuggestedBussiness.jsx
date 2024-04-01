@@ -17,7 +17,7 @@ import {
 import BookingSection from './BookingSection';
   
 const SuggestedBussiness = ({ bussiness }) => {
-    console.log(bussiness);
+
     const [bussinessList, setBussinessList] = useState([]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ const SuggestedBussiness = ({ bussiness }) => {
         <div className=' md:pl-10'>
             <div className="md:block">
                
-     <BookingSection>
+     <BookingSection  bussiness ={ bussiness }>
      <Button className="flex gap-2  py-6 ">
                     <NotebookPen />Appointment
                 </Button>

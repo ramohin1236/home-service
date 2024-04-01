@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
    
@@ -12,17 +13,19 @@ const Header = () => {
            <Image src='/logo.svg' alt='logo' width={100} height={100}/>
          {/* nav itmes */}
            <div className="md:flex items-center gap-6 hidden">
-                <h2 className="text-xl text-purple-600 hover:scale-105 hover:text-primary hover:font-bold font-semibold hover:cursor-pointer">Home</h2>
+           <Link
+                href={'/'}
+                ><h2 className="text-xl text-purple-600 hover:scale-105 hover:text-primary hover:font-bold font-semibold hover:cursor-pointer">Home</h2></Link>
                 <h2 className="text-xl text-purple-600 hover:scale-105 hover:text-primary hover:font-bold font-semibold hover:cursor-pointer">Services</h2>
-                <h2 className="text-xl text-purple-600 hover:scale-105 hover:text-primary hover:font-bold font-semibold hover:cursor-pointer">About Us</h2>
+                <Link
+                href={'/myBooking'}
+                ><h2 className="text-xl text-purple-600 hover:scale-105 hover:text-primary hover:font-bold font-semibold hover:cursor-pointer">My Booking</h2></Link>
            </div>
            
         </div>
         {/* open icons for mobile device */}
         <div>
-               <Button
-                 onClick={() => signIn("descope")}
-               >Sign In / Sign UP</Button>
+        <Button onClick={()=>signIn('descope')}>Login / Sign Up</Button>
            </div>
         </div>
     );
