@@ -12,7 +12,9 @@ const BussinessDetails = ({params}) => {
     const [bussiness, setBussiness] =useState([])
   
     
- 
+    useEffect(()=>{
+        checkUserAuth();
+      },[]);
 
     const getbussinesswithId= ()=>{
         GlobalApi.getBussinessByID(params?.bussinessId)  
@@ -35,9 +37,7 @@ const BussinessDetails = ({params}) => {
     
       }
 
-      useEffect(()=>{
-        checkUserAuth();
-      },[]);
+     
 
     return  status=='authenticated'&&bussiness&&(
         <div className='py-8 md:py-20 px-10 md:px-36'>
