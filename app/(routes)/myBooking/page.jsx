@@ -24,6 +24,14 @@ console.log(bookingHistoryy);
     }
 
 
+    const filterData=(type)=>{
+        const result=bookingHistoryy.filter(item=>
+            type=='Booked'?
+            new Date(item.date)>=new Date()
+            :new Date(item.date)<=new Date());
+
+            return result;
+    }
 
     return (
         <div className='my-10 mx-5 md:mx-36'>
@@ -32,16 +40,16 @@ console.log(bookingHistoryy);
                 <TabsList className='w-full  justify-start gap-3 '>
                     <TabsTrigger
                  
-                    value="booked">Booked</TabsTrigger>
+                    value="Booked">Booked</TabsTrigger>
                     <TabsTrigger value="completed">Completed</TabsTrigger>
                 </TabsList>
-                <TabsContent  value="booked">
-                    <BookingHistory bookingHistoryy={bookingHistoryy}/>
+                <TabsContent  value="Booked">
+                    <BookingHistory bookingHistoryy={filterData('Booked')}/>
                 </TabsContent>
 
 
                 <TabsContent value="completed">
-                    Change your password here.
+                <BookingHistory bookingHistoryy={filterData('Completed')}/>
                 </TabsContent>
             </Tabs>
 
